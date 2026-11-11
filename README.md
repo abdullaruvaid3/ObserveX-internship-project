@@ -1,3 +1,43 @@
+# ObserveX
+
+Centralized log monitoring for applications. Many applications send their logs to one place, and administrators watch them live on a dashboard, filter them, and get an alert when errors spike.
+
+Built as an internship project at the Kerala High Court with the MERN stack (MongoDB, Express, React, Node).
+
+## What problem does it solve?
+
+Every application writes logs: INFO (normal), WARN (risky), ERROR (broken). Without ObserveX, someone has to open each application's server to read them. ObserveX collects all logs in one place.
+
+## Architecture
+
+```
+Application --(API key)--> Log API (Express) --> MongoDB
+                                  |
+                                  +--> Socket.IO --> React dashboard (live)
+                                  +--> Alert check (5 errors in 60 s) --> red alert + email
+```
+
+| Part | Technology | Job |
+|------|-----------|-----|
+| Server | Node.js + Express (port 5000) | Receives logs, serves the API |
+| Database | MongoDB (local) | Stores apps, logs, users |
+| Auth | JWT | Only logged-in admins can read logs |
+| Live updates | Socket.IO | Pushes new logs and alerts to the dashboard |
+| Dashboard | React + Vite (port 5173) | Charts, tiles, filters, live logs |
+| SDK, middleware, agent | Node.js | Let an application send logs, request logs and CPU/memory usage |
+
+## Features
+
+- Register applications and get a secret API key (logs with a wrong key are rejected)
+- Admin login with JWT (the first registered user becomes the admin)
+- Live log stream with no page refresh
+- Dashboard tiles: logs received, errors, warnings, applications, error rate, live alerts
+- Logs-over-time chart and application list with error counts
+- Filter by level (ALL, ERROR, WARN, INFO), filter by application, search
+- Time-range selector
+- Spike alert: 5 ERROR logs from one application within 60 seconds, with a red banner and an email
+- SDK, Express middleware and an Agent that reports CPU and memory
+
 
 ## How to run
 
