@@ -5,3 +5,5 @@ dist/
 *.backup.js
 *.backup.jsx
 .DS_Store
+*.old.*
+client/README.md
