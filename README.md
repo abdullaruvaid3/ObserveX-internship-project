@@ -39,6 +39,24 @@ Application --(API key)--> Log API (Express) --> MongoDB
 - SDK, Express middleware and an Agent that reports CPU and memory
 
 
+## Screenshots
+
+**Login**
+
+![Login](docs/screenshots/login.png)
+
+**Dashboard**
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+**Live logs**
+
+![Live logs](docs/screenshots/logs.png)
+
+**Spike alert (red banner)**
+
+![Alert](docs/screenshots/alert.png)
+
 ## How to run
 
 Requirements: Node.js 18 or higher, MongoDB.
